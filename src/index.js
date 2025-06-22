@@ -49,9 +49,22 @@ function searchCity(city) {
 
 function displayWeather(response) {
   let temperature = Math.round(response.data.main.temp);
+  let condition = response.data.weather[0].description;
+  let humidity = response.data.main.humidity;
+  let wind = response.data.wind.speed;
+  let icon = response.data.weather[0].icon;
+  let iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
   let temperatureElement = document.querySelector(".current-temperature-value");
+  let conditionElemrnt = document.querySelector("#weather-condition");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let iconElement = document.querySelector(".current-temperature-icon");
 
   temperatureElement.innerHTML = temperature;
+  conditionElemrnt.innerHTML = condition;
+  humidityElement.innerHTML = humidity;
+  windElement.innerHTML = wind;
+  iconElement.innerHTML = `<img src="${iconUrl}" alt="${condition}" width="80" />`;
 }
 
 let searchForm = document.querySelector("#search-form");
